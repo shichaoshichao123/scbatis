@@ -1,4 +1,4 @@
-package com.sc.scbatis.demo;
+package com.sc.scbatis.demo.v1;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class TestMapperXml {
 
-    public static final String nameSpace = "com.sc.scbatis.demo.TestMapper";
+    public static final String nameSpace = "com.sc.scbatis.demo.v1.TestMapper";
 
     public static final Map<String, String> methodMap = new ConcurrentHashMap<String, String>(64);
 

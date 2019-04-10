@@ -1,6 +1,6 @@
 package com.sc.scbatis.proxy;
 
-import com.sc.scbatis.demo.TestMapperXml;
+import com.sc.scbatis.demo.v1.TestMapperXml;
 import com.sc.scbatis.session.SqlSession;
 
 import java.lang.reflect.InvocationHandler;
@@ -28,11 +28,9 @@ public class MapperProxy<T> implements InvocationHandler {
     }
 
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        String s = method.getDeclaringClass().getName();
-        String s1 = TestMapperXml.nameSpace;
         if (method.getDeclaringClass().getName().equals(TestMapperXml.nameSpace)) {
             String sql = TestMapperXml.methodMap.get(method.getName());
-            System.out.println(String.format("sql:[%s],parameter:[%s]", sql, args[0]));
+            System.out.println(String.format("SQL:%s,parameter:[%s]", sql, args[0]));
             return sqlSession.selectOne(sql, String.valueOf(args[0]));
         }
         return null;

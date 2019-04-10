@@ -1,4 +1,4 @@
-package com.sc.scbatis.demo;
+package com.sc.scbatis.demo.v1;
 
 import com.sc.scbatis.session.SqlSession;
 

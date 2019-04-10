@@ -1,7 +1,7 @@
 package com.sc.scbatis.executor;
 
 import com.sc.scbatis.db.DataBaseUtil;
-import com.sc.scbatis.demo.User;
+import com.sc.scbatis.demo.v1.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
