@@ -1,6 +1,7 @@
 package com.sc.scbatis.session;
 
 import com.sc.scbatis.config.Configuration;
+import com.sc.scbatis.config.MapperRegister;
 import com.sc.scbatis.executor.DefaultExecutor;
 import com.sc.scbatis.executor.Executor;
 import com.sc.scbatis.proxy.MapperProxy;
@@ -19,7 +20,7 @@ public class SqlSession {
 
 
     public SqlSession(Configuration configuration) {
-        this.executor = new DefaultExecutor();
+        this.executor = new DefaultExecutor(configuration);
         this.configuration = configuration;
     }
 
@@ -42,14 +43,28 @@ public class SqlSession {
 
     /**
      * 简单的查询方法
+     * V1版本
      *
      * @param statement
      * @param parameter
      * @param <T>
      * @return
      */
-    public <T> T selectOne(String statement, Object parameter) throws Exception{
-        return executor.selectOne(statement, parameter);
+    public <T> T selectOne(String statement, Object parameter) throws Exception {
+        return executor.queryV1(statement, parameter);
+    }
+
+    /**
+     * 简单的查询方法
+     * V2版本
+     *
+     * @param mapperData
+     * @param parameter
+     * @param <T>
+     * @return
+     */
+    public <T> T query(MapperRegister.MapperData mapperData, Object parameter) throws Exception {
+        return executor.query(mapperData, parameter);
     }
 
     public Executor getExecutor() {

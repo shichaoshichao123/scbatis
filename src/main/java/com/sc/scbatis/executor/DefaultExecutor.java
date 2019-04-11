@@ -1,33 +1,29 @@
 package com.sc.scbatis.executor;
 
-import com.sc.scbatis.db.DataBaseUtil;
-import com.sc.scbatis.demo.v1.User;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import com.sc.scbatis.config.Configuration;
+import com.sc.scbatis.config.MapperRegister;
+import com.sc.scbatis.handler.result.ResultHandler;
+import com.sc.scbatis.handler.statement.StatementHandler;
+import lombok.Data;
 
 /**
  * @author: shichao
  * @date: 2019/4/9
  * @description: 默认的Excutor
  */
+@Data
 public class DefaultExecutor implements Executor {
 
+    private final Configuration configuration;
+    private final ResultHandler resultHandler;
 
-    public <T> T selectOne(String statement, Object parameter) throws Exception {
-        Connection conn = DataBaseUtil.getConnection();
-        PreparedStatement pstmt;
-        pstmt = conn.prepareStatement(statement);
-        pstmt.setInt(1,Integer.parseInt(String.valueOf(parameter)));
-        ResultSet rs = pstmt.executeQuery();
-        User user = new User();
-        while (rs.next()) {
-            user.setId(rs.getInt("id"));
-            user.setName(rs.getString("name"));
-            user.setGender(rs.getInt("gender"));
-        }
-        return (T) user;
+    public DefaultExecutor(Configuration configuration) {
+        this.configuration = configuration;
+        this.resultHandler = new ResultHandler(configuration);
+    }
 
+    public <T> T query(MapperRegister.MapperData mapperData, Object parameter) throws Exception {
+        StatementHandler statementHandler = new StatementHandler(resultHandler, configuration);
+        return statementHandler.query(mapperData, parameter);
     }
 }

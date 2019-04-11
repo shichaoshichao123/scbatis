@@ -1,4 +1,4 @@
-package com.sc.scbatis.demo.v1;
+package com.sc.scbatis.demo;
 
 /**
  * @author: shichao

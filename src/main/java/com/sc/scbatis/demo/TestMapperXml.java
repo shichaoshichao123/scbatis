@@ -1,4 +1,4 @@
-package com.sc.scbatis.demo.v1;
+package com.sc.scbatis.demo;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
