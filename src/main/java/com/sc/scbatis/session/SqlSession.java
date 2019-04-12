@@ -41,18 +41,6 @@ public class SqlSession {
         return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, new MapperProxy(this, clazz));
     }
 
-    /**
-     * 简单的查询方法
-     * V1版本
-     *
-     * @param statement
-     * @param parameter
-     * @param <T>
-     * @return
-     */
-    public <T> T selectOne(String statement, Object parameter) throws Exception {
-        return executor.queryV1(statement, parameter);
-    }
 
     /**
      * 简单的查询方法
